@@ -26,7 +26,8 @@ class Browser
     :psp        => "PlayStation Portable",
     :quicktime  => "QuickTime",
     :core_media => "Apple CoreMedia",
-    :outlook    => "Microsoft Outlook",
+    :outlook2010 => "Microsoft Outlook 2010",
+    :outlook2007 => "Microsoft Outlook 2007",
     :thunderbird => "Thunderbird",
     :applemail  => "Apple Mail",
     :sparrow    => "Sparrow",
@@ -195,7 +196,8 @@ class Browser
     when psp?         then :psp
     when quicktime?   then :quicktime
     when core_media?  then :core_media
-    when outlook?     then :outlook
+    when outlook2010? then :outlook2010
+    when outlook2007? then :outlook2007
     when thunderbird? then :thunderbird
     when applemail?   then :applemail
     when sparrow?     then :sparrow
@@ -219,7 +221,7 @@ class Browser
 
   # Return the full version.
   def full_version
-    if self.outlook?
+    if self.outlook2007? or self.outlook2010?
       _, v = *ua.match(/(?:Version|MSOffice|Firefox|Chrome|QuickTime|BlackBerry[^\/]+|CoreMedia v)[\/ ]?([a-z0-9.]+)/i)
     else
       _, v = *ua.match(VERSIONS.fetch(id, VERSIONS[:default]))
@@ -356,8 +358,12 @@ class Browser
     ipad? || (android? && !mobile?)
   end
   
-  def outlook?
-    !!(ua =~ /MSOffice/)
+  def outlook2010?
+    !!(ua =~ /MSOffice 14/)
+  end
+  
+  def outlook2007?
+    !!(ua =~ /MSOffice 12/)
   end
   
   def thunderbird?

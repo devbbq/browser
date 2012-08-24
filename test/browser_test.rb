@@ -294,8 +294,8 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_outlook_2007
     @browser.ua = OUTLOOK2007
     
-    assert_equal "Microsoft Outlook", @browser.name
-    assert @browser.outlook?
+    assert_equal "Microsoft Outlook 2007", @browser.name
+    assert @browser.outlook2007?
     assert @browser.windows?
     assert_equal "12", @browser.version
   end
@@ -303,8 +303,8 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_outlook_2010
     @browser.ua = OUTLOOK2010
     
-    assert_equal "Microsoft Outlook", @browser.name
-    assert @browser.outlook?
+    assert_equal "Microsoft Outlook 2010", @browser.name
+    assert @browser.outlook2010?
     assert @browser.windows?
     assert_equal "14", @browser.version
   end
