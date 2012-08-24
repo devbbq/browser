@@ -25,11 +25,18 @@ class Browser
     :safari     => "Safari",
     :psp        => "PlayStation Portable",
     :quicktime  => "QuickTime",
-    :core_media => "Apple CoreMedia"
+    :core_media => "Apple CoreMedia",
+    :outlook    => "Microsoft Outlook",
+    :thunderbird => "Thunderbird",
+    :applemail  => "Apple Mail",
+    :sparrow    => "Sparrow",
+    :postbox    => "Postbox",
+    :webos      => "WebOS",
+    :playbook   => "PlayBook"
   }
 
   VERSIONS = {
-    :default => /(?:Version|MSIE|Firefox|Chrome|QuickTime|BlackBerry[^\/]+|CoreMedia v)[\/ ]?([a-z0-9.]+)/i,
+    :default => /(?:Version|MSOffice|MSIE|Firefox|Chrome|QuickTime|BlackBerry[^\/]+|CoreMedia v)[\/ ]?([a-z0-9.]+)/i,
     :opera => /Opera\/.*? Version\/([\d.]+)/
   }
 
@@ -188,6 +195,13 @@ class Browser
     when psp?         then :psp
     when quicktime?   then :quicktime
     when core_media?  then :core_media
+    when outlook?     then :outlook
+    when thunderbird? then :thunderbird
+    when applemail?   then :applemail
+    when sparrow?     then :sparrow
+    when postbox?     then :postbox
+    when webos?       then :webos
+    when playbook?    then :playbook
     else
       :other
     end
@@ -205,7 +219,11 @@ class Browser
 
   # Return the full version.
   def full_version
-    _, v = *ua.match(VERSIONS.fetch(id, VERSIONS[:default]))
+    if self.outlook?
+      _, v = *ua.match(/(?:Version|MSOffice|Firefox|Chrome|QuickTime|BlackBerry[^\/]+|CoreMedia v)[\/ ]?([a-z0-9.]+)/i)
+    else
+      _, v = *ua.match(VERSIONS.fetch(id, VERSIONS[:default]))
+    end
     v || "0.0"
   end
 
@@ -270,7 +288,7 @@ class Browser
 
   # Detect if browser is Safari.
   def safari?
-    ua =~ /Safari/ && ua !~ /Chrome/
+    ua =~ /Safari/ && ua !~ /Chrome/ && ua !~ /webOS/ && ua !~ /PlayBook/
   end
 
   # Detect if browser is Firefox.
@@ -285,7 +303,7 @@ class Browser
 
   # Detect if browser is Internet Explorer.
   def ie?
-    !!(ua =~ /MSIE/ && ua !~ /Opera/)
+    !!(ua =~ /MSIE/ && ua !~ /Opera/ && ua !~ /MSOffice/)
   end
 
   # Detect if browser is Internet Explorer 6.
@@ -336,6 +354,34 @@ class Browser
   # Detect if browser is tablet (currently just iPad or Android).
   def tablet?
     ipad? || (android? && !mobile?)
+  end
+  
+  def outlook?
+    !!(ua =~ /MSOffice/)
+  end
+  
+  def thunderbird?
+    !!(ua =~ /Thunderbird/)
+  end
+  
+  def applemail?
+    !!(ua =~ /Macintosh/ && ua =~ /AppleWebKit/ && ua !~ /Chrome/ && ua !~ /Safari/ && ua !~ /Sparrow/)
+  end
+  
+  def sparrow?
+    !!(ua =~ /Sparrow/)
+  end
+  
+  def postbox?
+    !!(ua =~ /Postbox/)
+  end
+  
+  def webos?
+    !!(ua =~ /webOS/)
+  end
+  
+  def playbook?
+    !!(ua =~ /PlayBook/)
   end
 
   # Return the platform.

@@ -20,7 +20,16 @@ class BrowserTest < Test::Unit::TestCase
   PSP        = "Mozilla/4.0 (PSP (PlayStation Portable); 2.00)"
   QUICKTIME  = "QuickTime/7.6.8 (qtver=7.6.8;os=Windows NT 5.1Service Pack 3)"
   COREMEDIA  = "Apple Mac OS X v10.6.4 CoreMedia v1.0.0.10F569"
-
+  APPLEMAIL  = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.52.7 (KHTML, like Gecko)"
+  OUTLOOK2007= "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; MSOffice 12)"
+  OUTLOOK2010= "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; Microsoft Outlook 14.0.6109; ms-office; MSOffice 14)"
+  THUNDERBIRD= "Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.24) Gecko/20100228 Thunderbird/2.0.0.24"
+  SPARROW    = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.53.11 (KHTML, like Gecko) Sparrow/1043.2"
+  POSTBOX    = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:7.0.1) Gecko/20120616 Postbox/3.0.4"
+  WEBOS      = "Mozilla/5.0 (Linux; webOS/2.2.4; U; en-US) AppleWebKit/534.6 (KHTML, like Gecko) webOSBrowser/221.56 Safari/534.6 Pre/3.0"
+  PLAYBOOK   = "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.0.1; en-US) AppleWebKit/535.8+ (KHTML, like Gecko) Version/7.2.0.1 Safari/535.8+"
+  
+  
   def setup
     @browser = Browser.new
   end
@@ -280,6 +289,70 @@ class BrowserTest < Test::Unit::TestCase
     assert_equal "PlayStation Portable", @browser.name
     assert @browser.psp?
     assert @browser.mobile?
+  end
+  
+  def test_detect_outlook_2007
+    @browser.ua = OUTLOOK2007
+    
+    assert_equal "Microsoft Outlook", @browser.name
+    assert @browser.outlook?
+    assert @browser.windows?
+    assert_equal "12", @browser.version
+  end
+  
+  def test_detect_outlook_2010
+    @browser.ua = OUTLOOK2010
+    
+    assert_equal "Microsoft Outlook", @browser.name
+    assert @browser.outlook?
+    assert @browser.windows?
+    assert_equal "14", @browser.version
+  end
+  
+  def test_detect_apple_mail
+    @browser.ua = APPLEMAIL
+    
+    assert_equal "Apple Mail", @browser.name
+    assert @browser.applemail?
+    assert @browser.mac?
+  end
+  
+  def test_detect_thunderbird
+    @browser.ua = THUNDERBIRD
+    
+    assert_equal "Thunderbird", @browser.name
+    assert @browser.thunderbird?
+    assert @browser.mac?
+  end
+  
+  def test_detect_sparrow
+    @browser.ua = SPARROW
+    
+    assert_equal "Sparrow", @browser.name
+    assert @browser.sparrow?
+    assert @browser.mac?
+  end
+  
+  def test_detect_postbox
+    @browser.ua = POSTBOX
+    
+    assert_equal "Postbox", @browser.name
+    assert @browser.postbox?
+    assert @browser.mac?
+  end
+  
+  def test_detect_webos
+    @browser.ua = WEBOS
+    
+    assert_equal "WebOS", @browser.name
+    assert @browser.webos?
+  end
+  
+  def test_detect_playbook
+    @browser.ua = PLAYBOOK
+    
+    assert_equal "PlayBook", @browser.name
+    assert @browser.playbook?
   end
 
   def test_detect_other_mobiles
