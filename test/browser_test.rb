@@ -84,7 +84,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_safari
     @browser.ua = SAFARI
 
-    assert_equal "Safari", @browser.name
+    assert_equal "Safari WebMail", @browser.name
     assert @browser.safari?
     assert @browser.webkit?
     assert @browser.capable?
@@ -124,7 +124,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_ie6
     @browser.ua = IE6
 
-    assert_equal "Internet Explorer", @browser.name
+    assert_equal "Internet Explorer WebMail", @browser.name
     assert @browser.ie?
     assert @browser.ie6?
     assert @browser.capable? == false
@@ -135,7 +135,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_ie7
     @browser.ua = IE7
 
-    assert_equal "Internet Explorer", @browser.name
+    assert_equal "Internet Explorer WebMail", @browser.name
     assert @browser.ie?
     assert @browser.ie7?
     assert @browser.capable?
@@ -146,7 +146,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_ie8
     @browser.ua = IE8
 
-    assert_equal "Internet Explorer", @browser.name
+    assert_equal "Internet Explorer WebMail", @browser.name
     assert @browser.ie?
     assert @browser.ie8?
     assert @browser.capable?
@@ -158,7 +158,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_ie8_in_compatibility_view
     @browser.ua = IE8_COMPAT
 
-    assert_equal "Internet Explorer", @browser.name
+    assert_equal "Internet Explorer WebMail", @browser.name
     assert @browser.ie?
     assert @browser.ie7?
     assert !@browser.ie8?
@@ -171,7 +171,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_ie9
     @browser.ua = IE9
 
-    assert_equal "Internet Explorer", @browser.name
+    assert_equal "Internet Explorer WebMail", @browser.name
     assert @browser.ie?
     assert @browser.ie9?
     assert @browser.capable?
@@ -183,7 +183,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_ie9_in_compatibility_view
     @browser.ua = IE9_COMPAT
 
-    assert_equal "Internet Explorer", @browser.name
+    assert_equal "Internet Explorer WebMail", @browser.name
     assert @browser.ie?
     assert @browser.ie7?
     assert !@browser.ie9?
@@ -196,7 +196,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_opera
     @browser.ua = OPERA
 
-    assert_equal "Opera", @browser.name
+    assert_equal "Opera WebMail", @browser.name
     assert @browser.opera?
     assert @browser.capable?
     assert_equal "11.64", @browser.full_version
@@ -206,7 +206,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_firefox
     @browser.ua = FIREFOX
 
-    assert_equal "Firefox", @browser.name
+    assert_equal "Firefox WebMail", @browser.name
     assert @browser.firefox?
     assert @browser.capable?
     assert_equal "3.8", @browser.full_version
@@ -216,7 +216,7 @@ class BrowserTest < Test::Unit::TestCase
   def test_detect_chrome
     @browser.ua = CHROME
 
-    assert_equal "Chrome", @browser.name
+    assert_equal "Chrome WebMail", @browser.name
     assert @browser.chrome?
     assert !@browser.safari?
     assert @browser.webkit?
@@ -408,7 +408,7 @@ class BrowserTest < Test::Unit::TestCase
 
   def test_detect_unknown_name
     @browser.ua = "Unknown"
-    assert_equal "Other", @browser.name
+    assert_equal "Other WebMail", @browser.name
   end
 
   def test_detect_mac_platform
