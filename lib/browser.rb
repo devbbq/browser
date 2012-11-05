@@ -33,7 +33,8 @@ class Browser
     :sparrow    => "Sparrow",
     :postbox    => "Postbox",
     :webos      => "WebOS",
-    :playbook   => "PlayBook"
+    :playbook   => "PlayBook",
+    :lotus      => "Lotus Notes"
   }
 
   VERSIONS = {
@@ -204,6 +205,7 @@ class Browser
     when postbox?     then :postbox
     when webos?       then :webos
     when playbook?    then :playbook
+    when lotus?       then :lotus
     else
       :other
     end
@@ -388,6 +390,10 @@ class Browser
   
   def playbook?
     !!(ua =~ /PlayBook/)
+  end
+  
+  def lotus?
+    !!(ua =~ /Lotus/)
   end
 
   # Return the platform.
