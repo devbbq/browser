@@ -14,6 +14,7 @@ class Browser
   NAMES = {
     :android    => "Android",
     :blackberry => "BlackBerry",
+    :blackberry10 => "BlackBerry 10"
     :chrome     => "Chrome WebMail",
     :firefox    => "Firefox WebMail",
     :ie         => "Internet Explorer WebMail",
@@ -38,7 +39,7 @@ class Browser
   }
 
   VERSIONS = {
-    :default => /(?:Version|MSOffice|MSIE|Firefox|Chrome|QuickTime|BlackBerry[^\/]+|CoreMedia v)[\/ ]?([a-z0-9.]+)/i,
+    :default => /(?:Version|MSOffice|MSIE|Firefox|Chrome|QuickTime|BlackBerry[^\/]+|BB10|CoreMedia v)[\/ ]?([a-z0-9.]+)/i,
     :opera => /Opera\/.*? Version\/([\d.]+)/
   }
 
@@ -193,6 +194,7 @@ class Browser
     when firefox?     then :firefox
     when android?     then :android
     when blackberry?  then :blackberry
+    when blackberry10? then :blackberry10
     when safari?      then :safari
     when psp?         then :psp
     when quicktime?   then :quicktime
@@ -263,6 +265,10 @@ class Browser
   # Detect if browser is BlackBerry
   def blackberry?
     !!(ua =~ /BlackBerry/)
+  end
+  
+  def blackberry10?
+    !!(ua =~ /BB10/)
   end
 
   # Detect if browser is Android.
