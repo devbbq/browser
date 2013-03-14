@@ -14,7 +14,7 @@ class Browser
   NAMES = {
     :android    => "Android",
     :blackberry => "BlackBerry",
-    :blackberry10 => "BlackBerry 10"
+    :blackberry10 => "BlackBerry 10",
     :chrome     => "Chrome WebMail",
     :firefox    => "Firefox WebMail",
     :ie         => "Internet Explorer WebMail",
