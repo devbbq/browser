@@ -313,7 +313,7 @@ class Browser
 
   # Detect if browser is Internet Explorer.
   def ie?
-    !!(ua =~ /MSIE/ && ua !~ /Opera/ && ua !~ /MSOffice/)
+    !!(ua =~ /MSIE/ && ua !~ /Opera/ && ua !~ /MSOffice/ && ua !~ /Outlook/)
   end
 
   # Detect if browser is Internet Explorer 6.
@@ -367,11 +367,11 @@ class Browser
   end
   
   def outlook2010?
-    !!(ua =~ /MSOffice 14/)
+    !!(ua =~ /MSOffice 14/ || ua =~ /Microsoft Outlook 14/)
   end
   
   def outlook2007?
-    !!(ua =~ /MSOffice 12/)
+    !!(ua =~ /MSOffice 12/ || ua =~ /Microsoft Outlook 12/)
   end
   
   def thunderbird?
