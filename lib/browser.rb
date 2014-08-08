@@ -27,6 +27,7 @@ class Browser
     :psp        => "PlayStation Portable",
     :quicktime  => "QuickTime",
     :core_media => "Apple CoreMedia",
+    :outlook    => "Microsoft Outlook"
     :outlook2013 => "Microsoft Outlook 2013",
     :outlook2010 => "Microsoft Outlook 2010",
     :outlook2007 => "Microsoft Outlook 2007",
@@ -200,6 +201,7 @@ class Browser
     when psp?         then :psp
     when quicktime?   then :quicktime
     when core_media?  then :core_media
+    when outlook?     then :outlook
     when outlook2013? then :outlook2013
     when outlook2010? then :outlook2010
     when outlook2007? then :outlook2007
@@ -366,6 +368,10 @@ class Browser
   # Detect if browser is tablet (currently just iPad or Android).
   def tablet?
     ipad? || (android? && !mobile?)
+  end
+  
+  def outlook?
+    !!(ua =~ /Microsoft Outlook/)
   end
   
   def outlook2013?
