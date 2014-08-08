@@ -27,7 +27,7 @@ class Browser
     :psp        => "PlayStation Portable",
     :quicktime  => "QuickTime",
     :core_media => "Apple CoreMedia",
-    :outlook    => "Microsoft Outlook"
+    :outlook    => "Microsoft Outlook",
     :outlook2013 => "Microsoft Outlook 2013",
     :outlook2010 => "Microsoft Outlook 2010",
     :outlook2007 => "Microsoft Outlook 2007",
